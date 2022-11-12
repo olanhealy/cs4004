@@ -66,6 +66,26 @@ public class Meeting {
 
     }
 
+    public boolean checkAttendees( People people) {
+
+        //if the meeting list contains the people
+        boolean val;
+        if (getMeetingList().contains(people)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String notifyAttendee(boolean val) {
+        if ( val == true) {
+
+            //method to send notification
+            return "Notification sent";
+        }
+        return "Notification not sent";
+    }
+
 
 
     @Override
