@@ -59,10 +59,10 @@ public class Meeting {
         this.meetingList = meetingList;
         this.meetingList.add(new People("Kevin", "kev@hotmail.com", "+353 0868604574"));
         this.meetingList.add(new People("Olan", "olan@hotmail.com", "+353 0878604574"));
-        this.meetingList.add(new People("Millie", "kev@hotmail.com", "+353 0898604574"));
-        this.meetingList.add(new People("Micheal", "kev@hotmail.com", "+353 0898604574"));
-        this.meetingList.add(new People("Brian", "kev@hotmail.com", "+353 0898604574"));
-        this.meetingList.add(new People("John", "kev@hotmail.com", "+353 0898604574"));
+        this.meetingList.add(new People("Millie", "millie@hotmail.com", "+353 0898604574"));
+        this.meetingList.add(new People("Micheal", "micheal@hotmail.com", "+353 0898604574"));
+        this.meetingList.add(new People("Brian", "brian@hotmail.com", "+353 0898604574"));
+        this.meetingList.add(new People("John", "john@hotmail.com", "+353 0898604574"));
 
     }
 
