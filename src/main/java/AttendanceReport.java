@@ -21,15 +21,7 @@ public class AttendanceReport {
     }
 
     //if someone attends the meeting, their attendance is set to full
-    public String fullAttendance(People person){
-        if(person.getAttendance() == true){
-            return fullAttendance;
-        }else if(person.getAttendance() == false){
-            return partialAttendance;
-        }else{
-            return noAttendance;
-        }
-    }
+
 }
 
 
