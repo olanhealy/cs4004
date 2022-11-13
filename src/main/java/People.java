@@ -23,9 +23,17 @@ public class People {
     }
 
 
-    public boolean isValid() {
+    public boolean isValid(People phoneNumber) {
         boolean expected = false;
-        if (phone.length() == 13 && phone.startsWith("+353")) {
+        if (phone.length() == 14 && phone.startsWith("+353")) {
+            expected = true;
+        }
+        return expected;
+    }
+
+    public boolean isValid_( String phone) {
+        boolean expected = false;
+        if (phone.length() == 14 && phone.startsWith("+353")) {
             expected = true;
         }
         return expected;
