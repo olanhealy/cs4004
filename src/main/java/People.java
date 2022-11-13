@@ -9,7 +9,25 @@ public class People {
         this.phone = phone;
     }
 
+    public People() {
+
+    }
+
     public String getName() {return name;}
     public String getEmail() {return email;}
     public String getPhone() {return phone;}
+
+
+    public boolean getAttendance() {
+        return false;
+    }
+
+
+    public boolean isValid() {
+        boolean expected = false;
+        if (phone.length() == 13 && phone.startsWith("+353")) {
+            expected = true;
+        }
+        return expected;
+    }
 }
