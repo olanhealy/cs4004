@@ -8,7 +8,7 @@ public class Meeting {
     private String startTime;
     private String endTime;
     private String room;
-    private People attendees;
+    private ArrayList<People> attendees = new ArrayList<People>();
 
 
     private ArrayList<People> meetingList = new ArrayList<People>();
@@ -118,6 +118,7 @@ public class Meeting {
         boolean joined = false;
         if(checkAttendees(people)) {
             System.out.println("You have joined the meeting");
+            attendees.add(people);
             joined = true;
         } else {
             System.out.println("You are not invited to this meeting");
@@ -125,37 +126,17 @@ public class Meeting {
         return joined;
     }
 
-    //if someone has joined meeting status set to true else set to false
-    public boolean setMeetingStatus(People people) {
-        boolean status = false;
-        if(joinMeeting(people)) {
-            status = true;
-        }
-        return status;
-    }
-    //
-
-    public String status(People people) {
-        String attendanceStatus = "Full Attendance";
-        if(joinMeeting(people)) {
-            attendanceStatus = "Not attended";
-        }
-
-        return attendanceStatus;
-    }
-
-
-
-    public boolean leaveMeeting(People people) {
-        boolean left = false;
-        if(checkAttendees(people)) {
-            System.out.println("You have left the meeting");
-            left = true;
+    public String checkAttendance(People people) {
+        String attendance = "";
+        if(attendees.contains(people)) {
+            attendance = "Attended";
         } else {
-            System.out.println("You are not invited to this meeting");
+            attendance = "No attendance";
         }
-        return left;
+        return attendance;
     }
+
+
 
 
     public String notifyAttendee(boolean val) {
@@ -189,6 +170,7 @@ public class Meeting {
                 "meetingList=" + meetingList +
                 '}';
     }
+
 
 
 }
