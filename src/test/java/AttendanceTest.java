@@ -26,6 +26,7 @@ public class AttendanceTest {
 
         assertEquals("Attended", meeting.checkAttendance(john));
         assertEquals("No attendance", meeting.checkAttendance(paudie));
+        
 
     }
 }
