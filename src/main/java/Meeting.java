@@ -54,7 +54,7 @@ public class Meeting {
 
 
     public boolean checkTime(String time){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:m");
         LocalTime start = LocalTime.parse(getStartTime(), formatter);
         LocalTime end = LocalTime.parse(getEndTime(), formatter);
         LocalTime timeToCheck = LocalTime.parse(time, formatter);
