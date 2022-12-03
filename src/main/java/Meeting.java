@@ -1,4 +1,7 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Meeting {
@@ -31,13 +34,7 @@ public class Meeting {
         return endTime;
     }
 
-    public String getRoom() {
-        return room;
-    }
 
-    public String getName() {
-        return name;
-    }
 
     public String getDate() {
         return date;
@@ -51,46 +48,29 @@ public class Meeting {
         return meetingList;
     }
 
-    public void removeAttendee(People attendee) {
-        meetingList.remove(attendee);
-    }
 
-    public boolean checkAvailability(People attendee) {
-        boolean available = false;
-        if (attendee.getAttendance()) {
-            available = true;
+
+
+
+
+    public boolean checkTime(String time){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime start = LocalTime.parse(getStartTime(), formatter);
+        LocalTime end = LocalTime.parse(getEndTime(), formatter);
+        LocalTime timeToCheck = LocalTime.parse(time, formatter);
+
+        if(start.isBefore(timeToCheck) && end.isAfter(timeToCheck)){
+            System.out.println("Time is within constraints");
+            return true;
         }
-        return available;
-    }
-
-
-    public boolean checkTime() {
-        boolean time = false;
-        if (startTime.equals(endTime)) {
-            time = true;
+        else{
+            System.out.println("Time is not within constraints");
+            return false;
         }
-        return time;
     }
 
-    public boolean checkRoom() {
-        boolean room = false;
-        if (this.room.equals("A")) {
-            room = true;
-        }
-        return room;
-    }
-
-    public String getAttendees() {
-        String str = "";
-
-        for (People people : meetingList) {
-            str = str+people.getName() + ", ";
-            //replace last comma with space by using substring
 
 
-        }
-        return str.substring(0, str.length() - 2);
-    }
 
     public void addAttendees(ArrayList<People> meetingList) {
         this.meetingList = meetingList;
@@ -116,15 +96,22 @@ public class Meeting {
 
     public boolean joinMeeting(People people) {
         boolean joined = false;
-        if(checkAttendees(people)) {
-            System.out.println("You have joined the meeting");
+        int hour = LocalDateTime.now().getHour();
+        int min = LocalDateTime.now().getMinute();
+        String time = hour + ":" + min;
+        if (checkAttendees(people)) {
             attendees.add(people);
-            joined = true;
-        } else {
-            System.out.println("You are not invited to this meeting");
+            if (checkAttendees(people) && checkTime(time)) {
+                System.out.println("You have joined the meeting");
+                joined = true;
+            } else {
+                System.out.println("You are not invited to this meeting");
+            }
+
         }
         return joined;
     }
+
 
     public String checkAttendance(People people) {
         String attendance = "";
@@ -151,13 +138,18 @@ public class Meeting {
 
 
     public boolean checkTimeConstraints(Meeting meeting, String startDate, String endDate) {
+        LocalDate now = LocalDate.now();
         LocalDate date = LocalDate.parse(meeting.getDate());
         LocalDate strDate = LocalDate.parse(startDate);
         LocalDate edDate = LocalDate.parse(endDate);
-        //if the date is between the start and end dates
-        if (date.isAfter(strDate) && date.isBefore(edDate)) {
+    if (date.isBefore(now)) {
+        System.out.println("Date is before today");
+        return false;
+    }if (date.isAfter(strDate) && date.isBefore(edDate)) {
+            System.out.println("Date is within time constraints");
             return true;
         } else {
+            System.out.println("Date is not within time constraints");
             return false;
         }
     }

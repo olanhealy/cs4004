@@ -9,9 +9,7 @@ public class People {
         this.phone = phone;
     }
 
-    public People() {
 
-    }
 
 
 
@@ -31,9 +29,8 @@ public class People {
     }
 
 
-    public boolean getAttendance() {
-        return false;
-    }
+
+
 
 
     public boolean isValid(People phoneNumber) {
